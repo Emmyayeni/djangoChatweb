@@ -1,0 +1,119 @@
+<!-- This is basically exactly the same as friend_list.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<style type="text/css">
+	.profile-image{
+		max-height: 100px;
+		max-width: 100px;
+	}
+	.profile-image{
+		border-radius: 12px;
+	}
+	.card{
+		border-radius: 12px;
+	}
+	.friends-text{
+		color: #000;
+		font-weight: 500;
+	}
+	.friends-text-container{
+		border: 1px solid #cccccc;
+		border-radius: 12px;
+	}
+	.friends-btn:hover {
+		background-color: #bfbfbf;
+		border-color: #bfbfbf;
+	}
+	.dropdown-toggle::after { 
+		content: none; 
+	}
+	.profile-link{
+		color: #000;
+	}
+	.checkmark-icon{
+		color: green;
+	}
+	.cancel-icon{
+		color: red;
+	}
+</style>
+
+<div class="container mt-5 pt-2">
+	<div class=" p-2">
+
+		{% if accounts %}
+		<div class="d-flex flex-row flex-wrap">
+		{% for account in accounts %}
+		<div class="card flex-row flex-grow-1  mx-2 my-2 align-items-center">
+			<a class="profile-link" href="{% url 'account:view' user_id=account.0.id %}">
+				<div class="card-image m-2">
+					<img class="img-fluid profile-image rounded-circle" src="{{account.0.profile_image.url}}" alt="">
+				</div>
+			</a>
+			<a class="profile-link" href="{% url 'account:view' user_id=account.0.id %}">
+				<div class="card-center d-flex  flex-column ">
+					<h4 class="justify-content-center align-items-center px-5 pt-2">{{account.0.username}}</h4>
+					{% if account.1 %}
+					<p class="card-text"><a href="#" onclick="createOrReturnPrivateChat('{{account.0.id}}')">Send a Message</a></p>
+					{% endif %}
+					
+				
+				<div class="d-flex flex-column card-right flex-grow-1 justify-content-end mx-2">
+				{% if account.1 %}
+					<div class="d-flex flex-column  p-3">
+						<p class="friends-text m-auto">
+							Friends 
+						</p>
+						<button class="btn btn-primary">
+							send Message
+						</button>
+					</div>
+				{% else %}
+					{% if account.0 !=  request.user %}
+						<div class="d-flex flex-column p-3">
+							<p class="friends-text m-auto">
+								Not Friends 
+							</p>
+							<button class="btn btn-primary w-80">Send request</button>
+						</div>
+					{% endif %}
+				{% endif %}
+				{% if account.0 == request.user %}
+					<div class="d-flex flex-column  p-3">
+						<p class="friends-text m-auto">
+							This is you 
+						</p>
+						<button class="btn btn-primary">
+							view profile
+						</button>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+		</a>
+		{% if forloop.counter|divisibleby:2 %}
+		</div><div class="d-flex flex-row flex-wrap">
+		{% endif %}
+		
+		{% endfor %}
+		
+		{% else %} <!-- If no friends -->
+		<div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center p-4">
+			<p>No results</p>
+		</div>
+		{% endif %}
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+{% endblock content %}

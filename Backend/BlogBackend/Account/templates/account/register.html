@@ -1,0 +1,135 @@
+
+{% load static %}
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  
+    <title>Pages / Register - NiceAdmin Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+  
+    <!-- Vendor CSS Files -->
+  <link href="{% static "assets/vendor/bootstrap/css/bootstrap.min.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/bootstrap-icons/bootstrap-icons.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/swiper/swiper-bundle.min.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/glightbox/css/glightbox.min.css"%}" rel="stylesheet">
+  <link href="{% static "assets/vendor/aos/aos.css" rel="stylesheet"%}">
+
+  <!-- Template Main CSS Files -->
+  <link href="{% static "assets/css/variables.css"%}" rel="stylesheet">
+  <link href="{% static "assets/css/main.css"%}" rel="stylesheet">
+  </head>
+  
+  <body>
+  
+    <main>
+      <div class="container">
+  
+        <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+  
+                <div class="d-flex justify-content-center py-4">
+                  <a class="logo d-flex align-items-center w-auto">
+                    <span class="d-none d-lg-block">Spec Blog</span>
+                  </a>
+                </div><!-- End Logo -->
+  
+                <div class="card mb-3">
+  
+                  <div class="card-body">
+  
+                    <div class="pt-4 pb-2">
+                      <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+                      <p class="text-center small">Enter your personal details to create account</p>
+                    </div>
+  
+                    <form class="row g-3 needs-validation" novalidate="" method="POST" >
+                        {% csrf_token %}
+                        <div class="col-12">
+                          <label for="name" class="form-label">Your name</label>
+                          <input type="name" name="text" class="form-control" id="name" required="">
+                          <div class="invalid-feedback">Please enter your name!</div>
+                        </div>
+                        <div class="col-12">
+                          <label for="yoursurname" class="form-label">Your surname</label>
+                          <input type="text" name="email" class="form-control" id="yoursurname" required="">
+                          <div class="invalid-feedback">Please enter your surname</div>
+                        </div>
+    
+                      <div class="col-12">
+                        <label for="yourEmail" class="form-label">Your Email</label>
+                        <input type="email" name="email" class="form-control" id="yourEmail" required="">
+                        <div class="invalid-feedback">Please enter a valid Email adddress!</div>
+                      </div>
+  
+                      <div class="col-12">
+                        <label for="yourUsername" class="form-label">Username</label>
+                        <div class="input-group has-validation">
+                          <span class="input-group-text" id="inputGroupPrepend">@</span>
+                          <input type="text" name="username" class="form-control" id="yourUsername" required="">
+                          <div class="invalid-feedback">Please choose a username.</div>
+                        </div>
+                      </div>
+  
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">Password</label>
+                        <input type="password" name="password1" class="form-control" id="yourPassword" required="">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+                      <div class="col-12">
+                        <label for="yourPassword" class="form-label">confirm password</label>
+                        <input type="password" name="password2" class="form-control" id="yourPassword" required="">
+                        <div class="invalid-feedback">Please enter your password!</div>
+                      </div>
+                      {% for field in registration_form %}
+                    <p>
+                    {% for error in field.errors %}
+                    <p style="color:red">{{error}}</p>
+                    {% endfor %}
+                  </p>
+                {% endfor %}
+                {% if registration_form.non_field_errors%}
+                    <div style="color:red">
+                       <p>{{registration_form.non_field_errors}}</p> 
+                    </div>
+                {% endif %}
+                      <div class="col-12">
+                        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      </div>
+                      <div class="col-12">
+                        <p class="small mb-0">Already have an account? <a href="{% url "login" %}">Log in</a></p>
+                      </div>
+                    </form>
+  
+                  </div>
+                </div>
+  
+                <div class="credits">
+                  <!-- All the links in the footer should remain intact. -->
+                  <!-- You can delete the links only if you purchased the pro version. -->
+                  <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                  <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+                  Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+  
+        </section>
+  
+      </div>
+    </main><!-- End #main -->
+  
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+    <!-- Vendor JS Files -->
+    <script src="{% static "assets/vendor/bootstrap/js/bootstrap.bundle.min.js"%}"></script>
+    <script src="{% static "assets/vendor/swiper/swiper-bundle.min.js"%}"></script>
+    <script src="{% static "assets/vendor/glightbox/js/glightbox.min.js"%}"></script>
+    <script src="{% static "assets/vendor/aos/aos.js"%}"></script>
+
+  <!-- Template Main JS File -->
+  <svg id="SvgjsSvg1001" width="2" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev" style="overflow: hidden; top: -100%; left: -100%; position: absolute; opacity: 0;"><defs id="SvgjsDefs1002"></defs><polyline id="SvgjsPolyline1003" points="0,0"></polyline><path id="SvgjsPath1004" d="M0 0 "></path></svg></body></html>
